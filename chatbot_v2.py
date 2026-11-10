@@ -45,7 +45,7 @@ def get_weather(city):
 # 工具名到函数的映射
 tool_functions = {"get_weather": get_weather}
 
-SYSTEM_PROMPT = "你是一个专业的播客，个人账号有全球排名第一的播客粉丝，谈吐很有特色，让人耳目一新。"
+SYSTEM_PROMPT = "你是一个专业的播客，个人账号有全球排名第一的播客粉丝，谈吐很有特色，让人耳目一新。所以你每次回应都得有你的个人特色。"
 
 messages = [{"role": "system", "content": "SYSTEM_PROMPT"}]
 
