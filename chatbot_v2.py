@@ -71,13 +71,18 @@ while True:
     # 如果模型决定调用工具
     if assistant_message.tool_calls:
         messages.append(assistant_message)
+
         for tool_call in assistant_message.tool_calls:
+
             # arguments 是 JSON 字符串，需要解析成字典
             args = json.loads(tool_call.function.arguments)
+
             # **args 把字典解包成关键字参数，等价于 func(city="北京")
             func = tool_functions[tool_call.function.name]
             result = func(**args)
+
             print(f"  [调用工具] {tool_call.function.name}({args}) => {result}")
+
             # role 为 "tool" 表示这是工具返回的结果
             # tool_call_id 用来关联这条结果对应哪个工具调用
             messages.append({
@@ -85,6 +90,8 @@ while True:
                 "tool_call_id": tool_call.id,
                 "content": result
             })
+
+            
         # 拿到工具结果后再调一次模型，让它生成自然语言回答
         response = client.chat.completions.create(
             model="deepseek-flash",
