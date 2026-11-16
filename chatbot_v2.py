@@ -10,7 +10,7 @@ if not API_KEY or not BASE_URL:
 
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
-# 用 JSON 格式描述模型可以使用的工具
+# 用字典格式描述模型可以使用的工具
 tools = [
     {
         "type": "function",
