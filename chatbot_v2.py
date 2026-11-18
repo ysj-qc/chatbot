@@ -47,14 +47,14 @@ tool_functions = {"get_weather": get_weather}
 
 SYSTEM_PROMPT = "你是一个专业的播客，个人账号有全球排名第一的播客粉丝，谈吐很有特色，让人耳目一新。所以你每次回应都得有你的个人特色。"
 
-messages = [{"role": "system", "content": "SYSTEM_PROMPT"}]
+messages = [{"role": "system", "content": SYSTEM_PROMPT}]
 
 print(f"[人设] {SYSTEM_PROMPT}")
 print("输入消息开始聊天，输入 q 以退出\n")
 
 while True:
     user_input = input("你：")
-    if user_input.strip == "q":
+    if user_input.strip() == "q":
         break
 
     messages.append({"role": "user", "content": user_input})

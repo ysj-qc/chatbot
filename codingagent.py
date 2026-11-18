@@ -95,10 +95,13 @@ SYSTEM_PROMPT = """你是一个编程助手。你可以读写文件和执行命�
 
 messages = [{"role": "system", "content": SYSTEM_PROMPT}]
 
-print("编程助手已激活，请输入任务以开始\n")
+print("编程助手已激活，请输入任务以开始，输入q以退出\n")
 
 while True:
     user_input = input("你：")
+    if user_input.strip() == "q":
+        break
+
     messages.append({"role": "user", "content": user_input})
 
     #每一次问答内的Agent循环，模型思考并行动，直到自己觉得可以停下来
@@ -132,7 +135,7 @@ while True:
             func = tool_functions[tool_call.function.name]
             result = func(**args)
             #打印工具调用过程，观察Agent行为
-            print(f"  [工具] {tool_call.function.name}({args}) => {result}")
+            print(f"  [工具] {tool_call.function.name}({args})")
             #只打印前200个字符，限制大文件
             print(f"  [结果] {result[:200]}")
 
