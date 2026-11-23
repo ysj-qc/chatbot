@@ -9,7 +9,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 query = sys.argv[1]
 
-doc_embeddings = np.load("doc_embeddings.npy")
+doc_embeddings = np.load("doc_embedding.npy")
 with open("documents.json", "r", encoding="utf-8") as f:
     documents = json.load(f)
 
@@ -27,7 +27,7 @@ for rank, index in enumerate(top_3, 1):
     doc = documents[index]
     score = similarities[index]
 
-    print(f"Top {rank} 相似度为 {score:.3f}  下标 {idx}")
+    print(f"Top {rank} 相似度为 {score:.3f}  下标 {index}")
     print(f"标题：{doc['title']}")
     print(f"链接：{doc['url']}")
     print(f"原文：{doc['text']}")
