@@ -16,7 +16,7 @@ with open("documents.json", "r", encoding="utf-8") as f:
 model_dir = snapshot_download("Qwen/Qwen3-Embedding-0.6B")
 model = SentenceTransformer(model_dir)
 
-query_embedding = model.encode([query], prompt_name="Your query is = ")
+query_embedding = model.encode([query], prompt_name="query")
 similarities = model.similarity(query_embedding, doc_embeddings).numpy()[0]
 
 top_3 = np.argsort(-similarities)[:3]
