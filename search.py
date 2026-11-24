@@ -1,6 +1,7 @@
 import json
 import sys
 import numpy as np
+from pathlib import Path
 from modelscope import snapshot_download
 from sentence_transformers import SentenceTransformer
 
@@ -15,6 +16,8 @@ with open("documents.json", "r", encoding="utf-8") as f:
 
 model_dir = snapshot_download("Qwen/Qwen3-Embedding-0.6B")
 model = SentenceTransformer(model_dir)
+print(Path(model_dir) / "config_sentence_transformers.json")
+print(model.prompts)
 
 query_embedding = model.encode([query], prompt_name="query")
 similarities = model.similarity(query_embedding, doc_embeddings).numpy()[0]
